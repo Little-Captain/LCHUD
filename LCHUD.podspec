@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LCHUD'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'LCHUD是一个基于MBProgressHUD的扩展框架'
   s.description      = <<-DESC
 LCHUD是一个基于MBProgressHUD的扩展框架, 内部用到了运行时技术.
@@ -19,5 +19,5 @@ LCHUD是一个基于MBProgressHUD的扩展框架, 内部用到了运行时技术
   s.source           = { :git => 'https://github.com/Little-Captain/LCHUD.git', :tag => s.version.to_s }
   s.ios.deployment_target = '8.0'
   s.source_files = 'LCHUD/Classes/**/*'
-  s.dependency 'MBProgressHUD'
+  s.dependency 'MBProgressHUD', '~> 1.0.0'
 end
