@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "UIViewController+LCHUD.h"
 
 FOUNDATION_EXPORT double LCHUDVersionNumber;
 FOUNDATION_EXPORT const unsigned char LCHUDVersionString[];

@@ -1,7 +1,7 @@
 PODS:
-  - LCHUD (1.0.0):
-    - MBProgressHUD
-  - MBProgressHUD (1.0.0)
+  - LCHUD (1.0.1):
+    - MBProgressHUD (~> 0.9)
+  - MBProgressHUD (0.9.2)
 
 DEPENDENCIES:
   - LCHUD (from `../`)
@@ -11,8 +11,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  LCHUD: 1cecf002ec509db5d8d3c3236a7f17b01825b80a
-  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  LCHUD: 5b76056bf44f8c16398d5d43368f0856f6ec927f
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
 
 PODFILE CHECKSUM: 483ead70f0989ea39e4acc8c20b06efdeff094b9
 

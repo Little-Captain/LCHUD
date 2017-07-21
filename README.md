@@ -22,7 +22,7 @@ pod "LCHUD"
 
 ## Author
 
-cqqxxl, littlecaptain@foxmail.com
+Little-Captain, littlecaptain@foxmail.com
 
 ## License
 

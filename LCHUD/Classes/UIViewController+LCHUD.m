@@ -16,9 +16,9 @@ static const void *HttpRequestLCHUDKey = &HttpRequestLCHUDKey;
 - (void)lc_showHudInView:(UIView *)view hint:(NSString *)hint {
     
     MBProgressHUD *HUD = [self HUD] ? [self HUD] : [[MBProgressHUD alloc] initWithView:view];
-    HUD.label.text = hint;
+    HUD.labelText = hint;
     [view addSubview:HUD];
-    [HUD showAnimated:YES];
+    [HUD show:YES];
     [self setHUD:HUD];
 }
 
@@ -29,15 +29,11 @@ static const void *HttpRequestLCHUDKey = &HttpRequestLCHUDKey;
     hud.userInteractionEnabled = NO;
     // Configure for text only and offset down
     hud.mode = MBProgressHUDModeText;
-    hud.label.text = hint;
+    hud.labelText = hint;
     hud.margin = 10.f;
-    hud.offset = ({
-        CGPoint offset = hud.offset;
-        offset.y = 180.0;
-        offset;
-    });
+    hud.yOffset = 180;
     hud.removeFromSuperViewOnHide = YES;
-    [hud hideAnimated:YES afterDelay:2.0];
+    [hud hide:YES afterDelay:2];
 }
 
 - (void)lc_showHint:(NSString *)hint yOffset:(float)yOffset {
@@ -47,20 +43,17 @@ static const void *HttpRequestLCHUDKey = &HttpRequestLCHUDKey;
     hud.userInteractionEnabled = NO;
     // Configure for text only and offset down
     hud.mode = MBProgressHUDModeText;
-    hud.label.text = hint;
+    hud.labelText = hint;
     hud.margin = 10.f;
-    hud.offset = ({
-        CGPoint offset = hud.offset;
-        offset.y = 180.0 + yOffset;
-        offset;
-    });
+    hud.yOffset = 180;
+    hud.yOffset += yOffset;
     hud.removeFromSuperViewOnHide = YES;
-    [hud hideAnimated:YES afterDelay:2.0];
+    [hud hide:YES afterDelay:2];
 }
 
 - (void)lc_hideHud {
     
-    [[self HUD] hideAnimated:YES];
+    [[self HUD] hide:YES];
 }
 
 #pragma mark - private method
