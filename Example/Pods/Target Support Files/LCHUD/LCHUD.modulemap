@@ -1,0 +1,6 @@
+framework module LCHUD {
+  umbrella header "LCHUD-umbrella.h"
+
+  export *
+  module * { export * }
+}
