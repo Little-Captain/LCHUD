@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'LCHUD_Example' do
+  pod 'LCHUD', :path => '../'
+
+  target 'LCHUD_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
