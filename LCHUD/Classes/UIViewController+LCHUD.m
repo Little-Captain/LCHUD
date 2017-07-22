@@ -10,16 +10,39 @@
 #import <objc/runtime.h>
 
 static const void *HttpRequestLCHUDKey = &HttpRequestLCHUDKey;
+static const void *NoMoreDataLCHUDKey = &NoMoreDataLCHUDKey;
 
 @implementation UIViewController (LCHUD)
 
-- (void)lc_showHudInView:(UIView *)view hint:(NSString *)hint {
+- (void)lc_showRequestHudInView:(UIView *)view hint:(NSString *)hint {
     
-    MBProgressHUD *HUD = [self HUD] ? [self HUD] : [[MBProgressHUD alloc] initWithView:view];
+    MBProgressHUD *HUD = [self httpRequestHUD] ? [self httpRequestHUD] : [[MBProgressHUD alloc] initWithView:view];
     HUD.labelText = hint;
     [view addSubview:HUD];
     [HUD show:YES];
-    [self setHUD:HUD];
+    [self setHttpRequestHUD:HUD];
+}
+
+- (void)lc_hideRequestHud {
+    
+    [[self httpRequestHUD] hide:YES];
+}
+
+- (void)lc_showNoMoreHudInView:(UIView *)view hint:(NSString *)hint {
+    
+    MBProgressHUD *HUD = [self noMoreDataHUD] ? [self noMoreDataHUD] : [[MBProgressHUD alloc] initWithView:view];
+    HUD.mode = MBProgressHUDModeText;
+    HUD.labelText = hint;
+    HUD.margin = 10.f;
+    HUD.yOffset = 180;
+    [view addSubview:HUD];
+    [HUD show:YES];
+    [self setNoMoreDataHUD:HUD];
+}
+
+- (void)lc_hideNoMoreHud {
+    
+    [[self noMoreDataHUD] hide:YES];
 }
 
 - (void)lc_showHint:(NSString *)hint {
@@ -51,21 +74,26 @@ static const void *HttpRequestLCHUDKey = &HttpRequestLCHUDKey;
     [hud hide:YES afterDelay:2];
 }
 
-- (void)lc_hideHud {
-    
-    [[self HUD] hide:YES];
-}
-
 #pragma mark - private method
 
-- (MBProgressHUD *)HUD {
+- (MBProgressHUD *)httpRequestHUD {
     
     return objc_getAssociatedObject(self, HttpRequestLCHUDKey);
 }
 
-- (void)setHUD:(MBProgressHUD *)HUD {
+- (void)setHttpRequestHUD:(MBProgressHUD *)httpRequestHUD {
     
-    objc_setAssociatedObject(self, HttpRequestLCHUDKey, HUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, HttpRequestLCHUDKey, httpRequestHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (MBProgressHUD *)noMoreDataHUD {
+    
+    return objc_getAssociatedObject(self, NoMoreDataLCHUDKey);
+}
+
+- (void)setNoMoreDataHUD:(MBProgressHUD *)noMoreDataHUD {
+    
+    objc_setAssociatedObject(self, NoMoreDataLCHUDKey, noMoreDataHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

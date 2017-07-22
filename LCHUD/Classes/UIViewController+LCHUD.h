@@ -10,17 +10,30 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIViewController (LCHUD)
 
 /**
- 在 view 上显示提示信息
+ 显示请求 hud
 
- @param view view
- @param hint 提示信息
+ @param view 容器视图
+ @param hint 提示消息
  */
-- (void)lc_showHudInView:(UIView *)view hint:(NSString *)hint;
+- (void)lc_showRequestHudInView:(UIView *)view hint:(NSString *)hint;
 
 /**
- 隐藏 hud
+ 隐藏请求 hud
  */
-- (void)lc_hideHud;
+- (void)lc_hideRequestHud;
+
+/**
+ 显示无数据 hud
+
+ @param view 容器视图
+ @param hint 提示消息
+ */
+- (void)lc_showNoMoreHudInView:(UIView *)view hint:(NSString *)hint;
+
+/**
+ 隐藏无数据 hud
+ */
+- (void)lc_hideNoMoreHud;
 
 /**
  显示 hud
