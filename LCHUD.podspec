@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LCHUD'
-  s.version          = '2.0.0'
+  s.version          = '2.1.0'
   s.summary          = 'LCHUD是一个基于MBProgressHUD的扩展框架'
   s.description      = <<-DESC
 LCHUD是一个基于MBProgressHUD的扩展框架, 内部用到了运行时技术.

@@ -6,6 +6,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MBProgressHUD.h"
+
 NS_ASSUME_NONNULL_BEGIN
 @interface UIViewController (LCHUD)
 
@@ -23,17 +25,24 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)lc_hideRequestHud;
 
 /**
- 显示无数据 hud
+ 显示上传进度 hud
 
  @param view 容器视图
  @param hint 提示消息
  */
-- (void)lc_showNoMoreHudInView:(UIView *)view hint:(NSString *)hint;
+- (void)lc_showUploadProgressHUDInView:(UIView *)view hint:(NSString *)hint;
 
 /**
- 隐藏无数据 hud
+ 隐藏上传进度 hud
  */
-- (void)lc_hideNoMoreHud;
+- (void)lc_hideUploadProgressHUD;
+
+/**
+ 获取与当前控制器绑定的上传进度 hud
+
+ @return hud
+ */
+- (MBProgressHUD *)uploadProgressHUD;
 
 /**
  显示 hud

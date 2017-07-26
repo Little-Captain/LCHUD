@@ -6,11 +6,10 @@
 
 #import "UIViewController+LCHUD.h"
 
-#import "MBProgressHUD.h"
 #import <objc/runtime.h>
 
 static const void *HttpRequestLCHUDKey = &HttpRequestLCHUDKey;
-static const void *NoMoreDataLCHUDKey = &NoMoreDataLCHUDKey;
+static const void *UploadProgressLCHUDKey = &UploadProgressLCHUDKey;
 
 @implementation UIViewController (LCHUD)
 
@@ -28,21 +27,19 @@ static const void *NoMoreDataLCHUDKey = &NoMoreDataLCHUDKey;
     [[self httpRequestHUD] hide:YES];
 }
 
-- (void)lc_showNoMoreHudInView:(UIView *)view hint:(NSString *)hint {
+- (void)lc_showUploadProgressHUDInView:(UIView *)view hint:(NSString *)hint {
     
-    MBProgressHUD *HUD = [self noMoreDataHUD] ? [self noMoreDataHUD] : [[MBProgressHUD alloc] initWithView:view];
-    HUD.mode = MBProgressHUDModeText;
+    MBProgressHUD *HUD = [self uploadProgressHUD] ? [self uploadProgressHUD] : [[MBProgressHUD alloc] initWithView:view];
+    HUD.mode = MBProgressHUDModeAnnularDeterminate;
     HUD.labelText = hint;
-    HUD.margin = 10.f;
-    HUD.yOffset = 180;
     [view addSubview:HUD];
     [HUD show:YES];
-    [self setNoMoreDataHUD:HUD];
+    [self setUploadProgressHUD:HUD];
 }
 
-- (void)lc_hideNoMoreHud {
+- (void)lc_hideUploadProgressHUD {
     
-    [[self noMoreDataHUD] hide:YES];
+    [[self uploadProgressHUD] hide:YES];
 }
 
 - (void)lc_showHint:(NSString *)hint {
@@ -86,14 +83,14 @@ static const void *NoMoreDataLCHUDKey = &NoMoreDataLCHUDKey;
     objc_setAssociatedObject(self, HttpRequestLCHUDKey, httpRequestHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (MBProgressHUD *)noMoreDataHUD {
+- (MBProgressHUD *)uploadProgressHUD {
     
-    return objc_getAssociatedObject(self, NoMoreDataLCHUDKey);
+    return objc_getAssociatedObject(self, UploadProgressLCHUDKey);
 }
 
-- (void)setNoMoreDataHUD:(MBProgressHUD *)noMoreDataHUD {
+- (void)setUploadProgressHUD:(MBProgressHUD *)uploadProgressHUD {
     
-    objc_setAssociatedObject(self, NoMoreDataLCHUDKey, noMoreDataHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, UploadProgressLCHUDKey, uploadProgressHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
