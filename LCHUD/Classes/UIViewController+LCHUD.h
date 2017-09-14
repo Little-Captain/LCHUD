@@ -45,6 +45,19 @@ NS_ASSUME_NONNULL_BEGIN
 - (MBProgressHUD *)uploadProgressHUD;
 
 /**
+ 显示蒙版 hud
+
+ @param view 容器视图
+ @param hint 提示消息
+ */
+- (void)lc_showMaskHUDInView:(UIView *)view hint:(NSString *)hint;
+
+/**
+ 隐藏蒙版 hud
+ */
+- (void)lc_hideMaskHUD;
+
+/**
  显示 hud
 
  @param hint 提示信息

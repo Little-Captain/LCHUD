@@ -10,6 +10,7 @@
 
 static const void *HttpRequestLCHUDKey = &HttpRequestLCHUDKey;
 static const void *UploadProgressLCHUDKey = &UploadProgressLCHUDKey;
+static const void *MaskLCHUDKey = &MaskLCHUDKey;
 
 @implementation UIViewController (LCHUD)
 
@@ -40,6 +41,21 @@ static const void *UploadProgressLCHUDKey = &UploadProgressLCHUDKey;
 - (void)lc_hideUploadProgressHUD {
     
     [[self uploadProgressHUD] hide:YES];
+}
+
+- (void)lc_showMaskHUDInView:(UIView *)view hint:(NSString *)hint {
+    
+    MBProgressHUD *HUD = [self maskHUD] ? [self maskHUD] : [[MBProgressHUD alloc] initWithView:view];
+    HUD.mode = MBProgressHUDModeText;
+    HUD.labelText = hint;
+    [view addSubview:HUD];
+    [HUD show:YES];
+    [self setMaskHUD:HUD];
+}
+
+- (void)lc_hideMaskHUD {
+    
+    [[self maskHUD] hide:YES];
 }
 
 - (void)lc_showHint:(NSString *)hint {
@@ -91,6 +107,16 @@ static const void *UploadProgressLCHUDKey = &UploadProgressLCHUDKey;
 - (void)setUploadProgressHUD:(MBProgressHUD *)uploadProgressHUD {
     
     objc_setAssociatedObject(self, UploadProgressLCHUDKey, uploadProgressHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (MBProgressHUD *)maskHUD {
+    
+    return objc_getAssociatedObject(self, MaskLCHUDKey);
+}
+
+- (void)setMaskHUD:(MBProgressHUD *)maskHUD {
+    
+    objc_setAssociatedObject(self, MaskLCHUDKey, maskHUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
